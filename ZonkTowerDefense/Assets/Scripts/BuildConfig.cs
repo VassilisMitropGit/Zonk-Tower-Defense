@@ -7,6 +7,7 @@ public class BuildConfig : MonoBehaviour
     //reference to itself.
     public static BuildConfig instance;
     //reference to the build manager publicly available.
+
     private void Awake() {
         if (instance != null){
             Debug.LogError("More than one GameManager in the scene!");
@@ -19,10 +20,8 @@ public class BuildConfig : MonoBehaviour
     public GameObject getTurretToBuild(){
         return turretToBuild;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //for now we always build the standard turret.
-        turretToBuild = standardTurretPrefab;
+
+    public void SetTurretToBuild(GameObject turret){
+        turretToBuild = turret;
     }
 }
