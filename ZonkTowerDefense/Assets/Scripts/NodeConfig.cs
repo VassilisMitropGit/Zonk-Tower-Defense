@@ -15,6 +15,7 @@ public class NodeConfig : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Store the starting color of the node so when mouse exits we return it to normal.
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
     }
@@ -25,18 +26,13 @@ public class NodeConfig : MonoBehaviour
 
     private void OnMouseDown() {
         if (turret != null){
-            //display relevant message on screen
+            //This means that there is already a turret on this block.
+            //TODO: Display a message on screen for the above error.
             return;
         }
 
         //Build a turret.
         GameObject turretToBuild = BuildConfig.instance.getTurretToBuild();
         turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

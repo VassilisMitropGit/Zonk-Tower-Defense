@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public float panBorderThickness = 10f;
     public float scrollSpeed = 5f;
 
+    //We add Scroll and Pan limits so the player can't go very far away from the map.
     [Header("Scroll Limits")]
     public float lowerLimit = 10f;
     public float upperLimit = 80f;
@@ -18,19 +19,16 @@ public class CameraController : MonoBehaviour
     public float backLimit = -100f;
     public float rightLimit = 100f;
     public float leftLimit = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        //Esc is a toggle that allows player camera movement.
         if (Input.GetKeyDown(KeyCode.Escape)) allowMovement = !allowMovement;
 
         if (!allowMovement) return;
 
+        //Key and mouse camera controls.
         if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness){
             if (transform.position.z >= forwardLimit) return;
             transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
@@ -48,6 +46,8 @@ public class CameraController : MonoBehaviour
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
 
+
+        //Mouse scroll controls.
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         Vector3 position = transform.position;

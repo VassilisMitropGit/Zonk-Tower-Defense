@@ -25,10 +25,4 @@ public class BuildConfig : MonoBehaviour
         //for now we always build the standard turret.
         turretToBuild = standardTurretPrefab;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
