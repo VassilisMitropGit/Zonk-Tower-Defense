@@ -12,4 +12,7 @@ public class ShopConfig : MonoBehaviour
     public void PurchaseStandardTurret(){
         buildConfig.SetTurretToBuild(buildConfig.standardTurretPrefab);
     }
+    public void PurchaseMissileLauncher(){
+        buildConfig.SetTurretToBuild(buildConfig.missileLauncherPrefab);
+    }
 }

@@ -16,6 +16,7 @@ public class BuildConfig : MonoBehaviour
         instance = this;
     }
     public GameObject standardTurretPrefab;
+    public GameObject missileLauncherPrefab;
     private GameObject turretToBuild;
     public GameObject getTurretToBuild(){
         return turretToBuild;
