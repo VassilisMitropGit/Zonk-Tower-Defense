@@ -27,11 +27,16 @@ public class EnemyAI : MonoBehaviour{
 
     void GetNextWaypoint(){
         if (wavepointIndex >= Waypoints.points.Length - 1){
-            Destroy(gameObject);
+            EndPath();
             //return is used so that index can't go out of bounds before the Destroy function is done executing.
             return;
         }
         wavepointIndex++;
         target = Waypoints.points[wavepointIndex];
+    }
+
+    void EndPath(){
+        Destroy(gameObject);
+        PlayerStats.Lives--;
     }
 }
