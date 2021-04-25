@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour{
 
+    public int health = 100;
+    public int moneyDrop = 50;
+
     public float speed = 10f;
 
     private Transform target;
@@ -38,5 +41,18 @@ public class EnemyAI : MonoBehaviour{
     void EndPath(){
         Destroy(gameObject);
         PlayerStats.Lives--;
+    }
+
+    public void takeDamage (int dmgAmount){
+        health -= dmgAmount;
+
+        if (health <= 0){
+            Die();
+        }
+    }
+
+    private void Die(){
+        PlayerStats.Money += moneyDrop;
+        Destroy(gameObject);
     }
 }

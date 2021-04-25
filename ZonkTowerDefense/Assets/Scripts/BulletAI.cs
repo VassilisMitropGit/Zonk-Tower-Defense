@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletAI : MonoBehaviour
 {
+    public int damage = 50;
     private Transform target;
     public float speed = 70f;
     public float explosionRadius = 0f;
@@ -57,7 +58,8 @@ public class BulletAI : MonoBehaviour
     }
 
     void Damage(Transform enemy){
-        Destroy(enemy.gameObject);
+        EnemyAI enem = enemy.GetComponent<EnemyAI>();
+        if (enem != null) enem.takeDamage(damage);
     }
 
     void Explode(){
