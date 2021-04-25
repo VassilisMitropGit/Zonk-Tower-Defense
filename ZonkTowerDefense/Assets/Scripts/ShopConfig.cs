@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ShopConfig : MonoBehaviour
 {
+    public TurretBlueprint standardTurret;
+    public TurretBlueprint missileLauncher;
     BuildConfig buildConfig;
 
     private void Start() {
         buildConfig = BuildConfig.instance;
     }
-    public void PurchaseStandardTurret(){
-        buildConfig.SetTurretToBuild(buildConfig.standardTurretPrefab);
+    public void SelectStandardTurret(){
+        buildConfig.SelectTurretToBuild(standardTurret);
     }
-    public void PurchaseMissileLauncher(){
-        buildConfig.SetTurretToBuild(buildConfig.missileLauncherPrefab);
+    public void SelectMissileLauncher(){
+        buildConfig.SelectTurretToBuild(missileLauncher);
     }
 }

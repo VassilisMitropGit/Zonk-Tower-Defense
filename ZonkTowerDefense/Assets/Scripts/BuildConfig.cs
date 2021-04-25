@@ -17,12 +17,17 @@ public class BuildConfig : MonoBehaviour
     }
     public GameObject standardTurretPrefab;
     public GameObject missileLauncherPrefab;
-    private GameObject turretToBuild;
-    public GameObject getTurretToBuild(){
-        return turretToBuild;
-    }
+    private TurretBlueprint turretToBuild;
 
-    public void SetTurretToBuild(GameObject turret){
+    public bool CanBuild { get { return turretToBuild != null; } }
+
+    public void BuildTurretOn(NodeConfig node){
+        if (PlayerStats.Money < turretToBuild.cost) return;
+        PlayerStats.Money -= turretToBuild.cost;
+        GameObject turret = (GameObject)Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
+        node.turret = turret;
+    }
+    public void SelectTurretToBuild(TurretBlueprint turret){
         turretToBuild = turret;
     }
 }

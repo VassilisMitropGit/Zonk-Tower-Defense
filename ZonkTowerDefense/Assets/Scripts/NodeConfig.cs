@@ -10,9 +10,10 @@ public class NodeConfig : MonoBehaviour
     public Color hoverColor;
     private Color startColor;
     private Renderer rend;
-    private GameObject turret;
+    [Header("Optional")]
+    public GameObject turret;
     private void OnMouseEnter() {
-        if (buildConfig.getTurretToBuild() == null) return;
+        if (!buildConfig.CanBuild) return;
 
         //If the player hovers over the Shop, they can't click the board.
         if (EventSystem.current.IsPointerOverGameObject()) return;
@@ -29,6 +30,10 @@ public class NodeConfig : MonoBehaviour
         buildConfig = BuildConfig.instance;
     }
 
+    public Vector3 GetBuildPosition(){
+        return transform.position + positionOffset;
+    }
+
     private void OnMouseExit() {
         rend.material.color = startColor;
     }
@@ -37,7 +42,7 @@ public class NodeConfig : MonoBehaviour
         //If the player hovers over the Shop, they can't click the board.
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
-        if (buildConfig.getTurretToBuild() == null) return;
+        if (!buildConfig.CanBuild) return;
 
         if (turret != null){
             //This means that there is already a turret on this block.
@@ -45,8 +50,6 @@ public class NodeConfig : MonoBehaviour
             return;
         }
 
-        //Build a turret.
-        GameObject turretToBuild = buildConfig.getTurretToBuild();
-        turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform.rotation);
+        buildConfig.BuildTurretOn(this);
     }
 }
