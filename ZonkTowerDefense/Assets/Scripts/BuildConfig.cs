@@ -21,6 +21,7 @@ public class BuildConfig : MonoBehaviour
 
     public bool CanBuild { get { return turretToBuild != null; } }
 
+    public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
     public void BuildTurretOn(NodeConfig node){
         if (PlayerStats.Money < turretToBuild.cost) return;
         PlayerStats.Money -= turretToBuild.cost;

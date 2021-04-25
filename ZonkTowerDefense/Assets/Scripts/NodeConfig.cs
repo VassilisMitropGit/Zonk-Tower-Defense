@@ -18,7 +18,11 @@ public class NodeConfig : MonoBehaviour
         //If the player hovers over the Shop, they can't click the board.
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
-        rend.material.color = hoverColor;
+        if (buildConfig.HasMoney){
+            rend.material.color = hoverColor;
+        } else {
+            rend.material.color = Color.red;
+        }
     }
     // Start is called before the first frame update
     void Start()
